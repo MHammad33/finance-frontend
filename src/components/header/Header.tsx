@@ -5,9 +5,7 @@ import MobileNav from "./MobileNav";
 import DarkModeToggle from "./DarkModeToggle";
 import DesktopNav from "./DesktopNav";
 
-interface HeaderProps {}
-
-const Header: FC<HeaderProps> = () => {
+const Header: FC = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const toggleMenu = useCallback(() => {

@@ -7,9 +7,7 @@ import BudgetSection from "./BudgetSection";
 import { fetchAllTransactions } from "@/store/slices/transactionSlice";
 import { setLoading } from "@/store/slices/loadingSlice";
 
-interface DashboardProps {}
-
-const Dashboard: FC<DashboardProps> = () => {
+const Dashboard: FC = () => {
 	const allTransactions = useSelector(
 		(state: RootState) => state.transactions.transactions
 	);
@@ -29,7 +27,7 @@ const Dashboard: FC<DashboardProps> = () => {
 		dispatch(setLoading(true));
 		dispatch(fetchAllTransactions());
 		dispatch(setLoading(false));
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<div className="bg-gray-50 dark:bg-gray-900 min-h-screen p-6 md:p-8">

@@ -1,18 +1,18 @@
 // Profile.tsx
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useMemo } from "react";
 
 interface UserProfile {
 	username: string;
 	email: string;
-	// Add more fields as needed
 }
 
 const Profile: FC = () => {
-	// Dummy user profile data
-	const dummyUser: UserProfile = {
-		username: "testuser",
-		email: "testuser@example.com",
-	};
+	const dummyUser: UserProfile = useMemo(() => {
+		return {
+			username: "testuser",
+			email: "testuser@example.com",
+		};
+	}, []);
 
 	const [user, setUser] = useState<UserProfile | null>(null);
 	const [editMode, setEditMode] = useState<boolean>(false);
@@ -22,10 +22,9 @@ const Profile: FC = () => {
 	});
 
 	useEffect(() => {
-		// Simulate fetching user data
 		setUser(dummyUser);
 		setFormData(dummyUser);
-	}, []);
+	}, [dummyUser]);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;

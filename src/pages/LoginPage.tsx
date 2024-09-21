@@ -30,13 +30,14 @@ const Login: FC = () => {
 		dispatch(loginStart());
 		dispatch(setLoading(true));
 		try {
-			const user: any = await authService.login(formData);
+			const user = await authService.login(formData);
 			dispatch(loginSuccess(user));
 			toast("Login Successfull");
 			navigate("/dashboard");
 		} catch (error) {
 			dispatch(loginFailure());
 			toast.error("Invalid Username or Password");
+			console.error("Error", error);
 		} finally {
 			dispatch(setLoading(false));
 		}

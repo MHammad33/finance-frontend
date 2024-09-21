@@ -1,16 +1,9 @@
 import transactionService from "@/services/transactionService";
 import { addTransaction } from "@/store/slices/transactionSlice";
+import { Transaction } from "@/types/Transaction.type";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-
-interface Transaction {
-	date: string;
-	description: string;
-	amount: number;
-	type: "income" | "expense";
-	category: string;
-}
 
 const predefinedCategories = [
 	"Salary",
