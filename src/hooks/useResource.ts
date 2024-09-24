@@ -45,9 +45,20 @@ export const useResource = <T extends ResourceBase>(baseUrl: string) => {
 		}
 	};
 
+	const remove = async (id: string) => {
+		try {
+			await axios.delete<T>(`${baseUrl}/${id}`);
+			setResources(resources.filter((resource) => resource.id !== id));
+		} catch (error) {
+			console.error("Error deleting resource:", error);
+			throw error;
+		}
+	};
+
 	const service = {
 		create,
 		update,
+		remove,
 	};
 
 	return [resources, service] as const;
