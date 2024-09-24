@@ -27,7 +27,9 @@ export const useResource = <T>(baseUrl: string) => {
 		}
 	};
 
-	return {
+	const service = {
 		create,
 	};
+
+	return [resources, service] as const;
 };
