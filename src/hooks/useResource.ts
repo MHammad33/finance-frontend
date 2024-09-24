@@ -16,4 +16,18 @@ export const useResource = <T>(baseUrl: string) => {
 
 		fetchResources();
 	}, [baseUrl]);
+
+	const create = async (resource: T) => {
+		try {
+			const response = await axios.post<T>(baseUrl, resource);
+			setResources([...resources, response.data]);
+		} catch (error) {
+			console.error("Error creating resource:", error);
+			throw error;
+		}
+	};
+
+	return {
+		create,
+	};
 };
