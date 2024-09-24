@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const useResource = <T>(baseUrl: string) => {
+interface ResourceBase {
+	id: string;
+}
+
+export const useResource = <T extends ResourceBase>(baseUrl: string) => {
 	const [resources, setResources] = useState<T[]>([]);
 
 	useEffect(() => {
@@ -43,6 +47,7 @@ export const useResource = <T>(baseUrl: string) => {
 
 	const service = {
 		create,
+		update,
 	};
 
 	return [resources, service] as const;
