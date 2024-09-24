@@ -27,6 +27,20 @@ export const useResource = <T>(baseUrl: string) => {
 		}
 	};
 
+	const update = async (id: string, updatedResource: Partial<T>) => {
+		try {
+			const response = await axios.put<T>(`${baseUrl}/${id}`, updatedResource);
+			setResources(
+				resources.map((resource) =>
+					resource.id === id ? response.data : resource
+				)
+			);
+		} catch (error) {
+			console.error("Error updating resource:", error);
+			throw error;
+		}
+	};
+
 	const service = {
 		create,
 	};
