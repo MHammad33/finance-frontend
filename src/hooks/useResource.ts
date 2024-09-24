@@ -55,10 +55,21 @@ export const useResource = <T extends ResourceBase>(baseUrl: string) => {
 		}
 	};
 
+	const get = async (id: string) => {
+		try {
+			const response = await axios.get<T>(`${baseUrl}/${id}`);
+			return response.data;
+		} catch (error) {
+			console.error("Error fetching resource:", error);
+			throw error;
+		}
+	};
+
 	const service = {
 		create,
 		update,
 		remove,
+		get,
 	};
 
 	return [resources, service] as const;
