@@ -3,7 +3,6 @@ import { FC } from "react";
 const AboutPage: FC = () => {
 	return (
 		<div className="container mx-auto px-4 py-8 md:px-8">
-			{/* Header Section */}
 			<div className="text-center mb-12">
 				<h1 className="text-5xl font-extrabold text-gray-900 dark:text-gray-100 mb-6">
 					About Us
@@ -17,9 +16,7 @@ const AboutPage: FC = () => {
 				</p>
 			</div>
 
-			{/* Mission and Vision Sections */}
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-				{/* Mission Section */}
 				<div className="bg-gradient-to-r from-blue-100 to-green-100 dark:from-blue-800 dark:to-green-800 shadow-lg rounded-lg p-8 flex flex-col justify-center">
 					<h2 className="text-4xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
 						Our Mission
@@ -33,7 +30,6 @@ const AboutPage: FC = () => {
 					</p>
 				</div>
 
-				{/* Vision Section */}
 				<div className="bg-gradient-to-r from-yellow-100 to-red-100 dark:from-yellow-800 dark:to-red-800 shadow-lg rounded-lg p-8 flex flex-col justify-center">
 					<h2 className="text-4xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
 						Our Vision
@@ -48,7 +44,6 @@ const AboutPage: FC = () => {
 				</div>
 			</div>
 
-			{/* Contact Section */}
 			<div className="bg-gray-100 dark:bg-gray-800 shadow-lg rounded-lg p-8 text-center">
 				<h2 className="text-4xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
 					Get In Touch

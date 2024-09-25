@@ -1,4 +1,3 @@
-// Profile.tsx
 import { FC, useState, useEffect, useMemo } from "react";
 
 interface UserProfile {
@@ -33,7 +32,6 @@ const Profile: FC = () => {
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		// Simulate saving data
 		setUser(formData);
 		setEditMode(false);
 	};
@@ -46,7 +44,6 @@ const Profile: FC = () => {
 				</h2>
 				{user && (
 					<form onSubmit={handleSubmit} className="space-y-6">
-						{/* Username */}
 						<div>
 							<label
 								htmlFor="username"
@@ -65,7 +62,6 @@ const Profile: FC = () => {
 							/>
 						</div>
 
-						{/* Email */}
 						<div>
 							<label
 								htmlFor="email"
@@ -84,7 +80,6 @@ const Profile: FC = () => {
 							/>
 						</div>
 
-						{/* Save or Edit Button */}
 						<div className="flex justify-between">
 							{editMode ? (
 								<>

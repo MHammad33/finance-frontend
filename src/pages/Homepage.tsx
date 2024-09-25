@@ -8,7 +8,6 @@ interface HomepageProps {
 const Homepage: FC<HomepageProps> = ({ isLoggedIn }) => {
 	return (
 		<div className="bg-gray-50 dark:bg-gray-900 min-h-screen p-6 md:p-8">
-			{/* Hero Section */}
 			<section className="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-700 dark:to-indigo-800 text-white rounded-lg shadow-xl p-6 mb-6">
 				<h1 className="text-3xl md:text-4xl font-bold mb-3">
 					Welcome to Finance Tracker
@@ -45,7 +44,6 @@ const Homepage: FC<HomepageProps> = ({ isLoggedIn }) => {
 				</div>
 			</section>
 
-			{/* Features Section */}
 			<section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 mb-6">
 				<h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
 					Why Use Our Tool?
