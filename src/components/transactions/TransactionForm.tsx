@@ -1,6 +1,6 @@
 import transactionService from "@/services/transactionService";
 import { addTransaction } from "@/store/slices/transactionSlice";
-import { Transaction } from "@/types/Transaction.type";
+import { Transaction } from "@/types/transaction.type";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
