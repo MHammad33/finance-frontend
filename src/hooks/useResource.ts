@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 interface ResourceBase {
@@ -7,15 +7,12 @@ interface ResourceBase {
 
 export const useResource = <T extends ResourceBase>(baseUrl: string) => {
 	const [resources, setResources] = useState<T[]>([]);
-	const [error, setError] = useState<AxiosError | null>(null);
-
 	useEffect(() => {
 		const fetchResources = async () => {
 			try {
 				const response = await axios.get<T[]>(baseUrl);
 				setResources(response.data);
 			} catch (error: unknown) {
-				setError(error as AxiosError);
 				console.error("Error fetching resources:", error);
 			}
 		};
@@ -28,7 +25,6 @@ export const useResource = <T extends ResourceBase>(baseUrl: string) => {
 			const response = await axios.post<T>(baseUrl, resource);
 			setResources([...resources, response.data]);
 		} catch (error: unknown) {
-			setError(error as AxiosError);
 			console.error("Error creating resource:", error);
 			throw error;
 		}
@@ -43,7 +39,6 @@ export const useResource = <T extends ResourceBase>(baseUrl: string) => {
 				)
 			);
 		} catch (error: unknown) {
-			setError(error as AxiosError);
 			console.error("Error updating resource:", error);
 			throw error;
 		}
@@ -54,7 +49,6 @@ export const useResource = <T extends ResourceBase>(baseUrl: string) => {
 			await axios.delete<T>(`${baseUrl}/${id}`);
 			setResources(resources.filter((resource) => resource.id !== id));
 		} catch (error: unknown) {
-			setError(error as AxiosError);
 			console.error("Error deleting resource:", error);
 			throw error;
 		}
@@ -65,7 +59,6 @@ export const useResource = <T extends ResourceBase>(baseUrl: string) => {
 			const response = await axios.get<T>(`${baseUrl}/${id}`);
 			return response.data;
 		} catch (error: unknown) {
-			setError(error as AxiosError);
 			console.error("Error fetching resource:", error);
 			throw error;
 		}
