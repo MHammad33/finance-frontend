@@ -6,11 +6,25 @@ interface ResourceBase {
 }
 
 export const useResource = <T extends ResourceBase>(baseUrl: string) => {
+	const getAuthConfig = () => {
+		const storedToken = localStorage.getItem("token");
+		const token = storedToken ? `Bearer ${JSON.parse(storedToken)}` : "";
+		if (!token) throw new Error("Authorization token is missing.");
+
+		const config = {
+			headers: {
+				Authorization: token,
+			},
+		};
+		return config;
+	};
+
 	const [resources, setResources] = useState<T[]>([]);
 	useEffect(() => {
 		const fetchResources = async () => {
 			try {
-				const response = await axios.get<T[]>(baseUrl);
+				const config = getAuthConfig();
+				const response = await axios.get<T[]>(baseUrl, config);
 				setResources(response.data);
 			} catch (error: unknown) {
 				console.error("Error fetching resources:", error);
@@ -22,7 +36,8 @@ export const useResource = <T extends ResourceBase>(baseUrl: string) => {
 
 	const create = async (resource: Omit<T, "id">) => {
 		try {
-			const response = await axios.post<T>(baseUrl, resource);
+			const config = getAuthConfig();
+			const response = await axios.post<T>(baseUrl, resource, config);
 			setResources([...resources, response.data]);
 		} catch (error: unknown) {
 			console.error("Error creating resource:", error);
@@ -32,7 +47,12 @@ export const useResource = <T extends ResourceBase>(baseUrl: string) => {
 
 	const update = async (id: string, updatedResource: Partial<T>) => {
 		try {
-			const response = await axios.put<T>(`${baseUrl}/${id}`, updatedResource);
+			const config = getAuthConfig();
+			const response = await axios.put<T>(
+				`${baseUrl}/${id}`,
+				updatedResource,
+				config
+			);
 			setResources(
 				resources.map((resource) =>
 					resource.id === id ? response.data : resource
@@ -46,7 +66,8 @@ export const useResource = <T extends ResourceBase>(baseUrl: string) => {
 
 	const remove = async (id: string) => {
 		try {
-			await axios.delete<T>(`${baseUrl}/${id}`);
+			const config = getAuthConfig();
+			await axios.delete<T>(`${baseUrl}/${id}`, config);
 			setResources(resources.filter((resource) => resource.id !== id));
 		} catch (error: unknown) {
 			console.error("Error deleting resource:", error);
@@ -56,7 +77,8 @@ export const useResource = <T extends ResourceBase>(baseUrl: string) => {
 
 	const get = async (id: string) => {
 		try {
-			const response = await axios.get<T>(`${baseUrl}/${id}`);
+			const config = getAuthConfig();
+			const response = await axios.get<T>(`${baseUrl}/${id}`, config);
 			return response.data;
 		} catch (error: unknown) {
 			console.error("Error fetching resource:", error);
