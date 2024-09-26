@@ -1,6 +1,11 @@
 {
-  "trailingComma": "es5",
+  "arrowParens": "avoid",
+  "singeQuote": false,
+  "jsxSinglleQuote": false,
   "tabWidth": 2,
-  "semi": false,
-  "singleQuote": false
+  "trailingComma": "none",
+  "semi": true,
+  "proseWrap": "always",
+  "printWidth": 80,
+  "endOfLine": "crlf"
 }
