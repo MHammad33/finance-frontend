@@ -34,7 +34,7 @@ const calculateMonthlyIncome = (
 
     if (
       transaction.type === "income" &&
-      monthlyIncome.hasOwnProperty(transactionMonth)
+      Object.prototype.hasOwnProperty.call(monthlyIncome, transactionMonth)
     ) {
       monthlyIncome[transactionMonth] += transaction.amount;
     }
