@@ -4,14 +4,14 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-	return (
-		<>
-			<LoadingOverlay>
-				<AppRoutes />
-				<ToastContainer />
-			</LoadingOverlay>
-		</>
-	);
+  return (
+    <>
+      <LoadingOverlay>
+        <AppRoutes />
+        <ToastContainer />
+      </LoadingOverlay>
+    </>
+  );
 }
 
 export default App;

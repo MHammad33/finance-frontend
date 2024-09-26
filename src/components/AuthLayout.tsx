@@ -5,36 +5,36 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
 
 interface AuthGuardProps {
-	children: ReactNode;
-	requiresAuth?: boolean;
+  children: ReactNode;
+  requiresAuth?: boolean;
 }
 
 const Protected: FC<AuthGuardProps> = ({ children, requiresAuth = true }) => {
-	const { isLoggedIn, isLoading } = useSelector(
-		(state: RootState) => state.auth
-	);
+  const { isLoggedIn, isLoading } = useSelector(
+    (state: RootState) => state.auth
+  );
 
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	const handleNavigation = useCallback(() => {
-		if (!isLoggedIn && requiresAuth) {
-			navigate("/login");
-		}
-	}, [isLoggedIn, navigate, requiresAuth]);
+  const handleNavigation = useCallback(() => {
+    if (!isLoggedIn && requiresAuth) {
+      navigate("/login");
+    }
+  }, [isLoggedIn, navigate, requiresAuth]);
 
-	useEffect(() => {
-		handleNavigation();
-	}, [handleNavigation]);
+  useEffect(() => {
+    handleNavigation();
+  }, [handleNavigation]);
 
-	if (isLoading) {
-		return (
-			<div>
-				<Spinner />
-			</div>
-		);
-	}
+  if (isLoading) {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  }
 
-	return isLoggedIn || !requiresAuth ? <>{children}</> : null;
+  return isLoggedIn || !requiresAuth ? <>{children}</> : null;
 };
 
 export default Protected;
