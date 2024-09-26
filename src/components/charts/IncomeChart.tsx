@@ -1,5 +1,5 @@
 import { RootState } from "@/store";
-import { Transaction } from "@/types/Transaction.type";
+import { Transaction } from "@/types/transaction.type";
 import { FC, useMemo } from "react";
 import ApexCharts from "react-apexcharts";
 import { useSelector } from "react-redux";

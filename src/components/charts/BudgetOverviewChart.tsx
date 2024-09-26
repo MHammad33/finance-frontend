@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react";
 import { useSelector } from "react-redux";
 import ApexCharts from "react-apexcharts";
-import { RootState } from "../../store/index"; // Adjust the import based on your project structure
+import { RootState } from "../../store/index";
 
 const BudgetOverviewChart: FC = () => {
   const transactions = useSelector(
