@@ -1,5 +1,6 @@
 import { Transaction } from "@/types/transaction.type";
 import { FC } from "react";
+import TransactionTableHeader from "./TransactionTableHeader";
 
 const DATE_FORMAT_OPTIONS: Intl.DateTimeFormatOptions = {
   timeZone: "Asia/Karachi",
@@ -21,15 +22,7 @@ interface TransactionTableProps {
 const TransactionTable: FC<TransactionTableProps> = ({ transactions }) => {
   return (
     <table className="min-w-full bg-white dark:bg-gray-800 mt-6">
-      <thead>
-        <tr className="text-left border-b">
-          <th className="py-2 px-4">Date</th>
-          <th className="py-2 px-4">Description</th>
-          <th className="py-2 px-4">Category</th>
-          <th className="py-2 px-4">Amount</th>
-          <th className="py-2 px-4">Type</th>
-        </tr>
-      </thead>
+      <TransactionTableHeader />
       <tbody>
         {transactions.map(transaction => (
           <tr key={transaction.id} className="border-b">
