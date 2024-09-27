@@ -3,6 +3,7 @@ import TransactionForm from "./TransactionForm";
 import { Button } from "../ui/button";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import TransactionHeader from "./TransactionHeader";
 
 const DATE_FORMAT_OPTIONS: Intl.DateTimeFormatOptions = {
   timeZone: "Asia/Karachi",
@@ -31,8 +32,7 @@ const Transactions: React.FC = () => {
 
   return (
     <div className="p-6 bg-white dark:bg-gray-900 min-h-screen">
-      <h1 className="text-2xl font-bold mb-4">Transactions</h1>
-
+      <TransactionHeader />
       <div className="w-full text-right">
         <Button onClick={() => setIsTransactionFormVisible(prev => !prev)}>
           {isTransactionFormVisible ? "Cancel" : "Add"} Transaction
