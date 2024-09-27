@@ -24,7 +24,11 @@ const Transactions: React.FC = () => {
           {showTransactionForm ? "Cancel" : "Add"} Transaction
         </Button>
       </div>
-      {showTransactionForm && <TransactionForm />}
+      {showTransactionForm && (
+        <TransactionForm
+          closeTransactionForm={() => setShowTransactionForm(false)}
+        />
+      )}
 
       <table className="min-w-full bg-white dark:bg-gray-800 mt-6">
         <thead>

@@ -14,7 +14,13 @@ const predefinedCategories = [
   "Transportation"
 ];
 
-const TransactionForm: React.FC = () => {
+interface TransactionFormProps {
+  closeTransactionForm(): void;
+}
+
+const TransactionForm: React.FC<TransactionFormProps> = ({
+  closeTransactionForm
+}) => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState<Transaction>({
     amount: 0,
@@ -61,6 +67,7 @@ const TransactionForm: React.FC = () => {
       date: ""
     });
     setIsCustomCategory(false);
+    closeTransactionForm();
   };
 
   return (
