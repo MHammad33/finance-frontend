@@ -22,7 +22,8 @@ const Transactions: React.FC = () => {
     (state: RootState) => state.transactions.transactions
   );
 
-  const [showTransactionForm, setShowTransactionForm] = useState(false);
+  const [isTransactionFormVisible, setIsTransactionFormVisible] =
+    useState(false);
 
   if (!transactions) {
     return <>Loading...</>;
@@ -33,13 +34,13 @@ const Transactions: React.FC = () => {
       <h1 className="text-2xl font-bold mb-4">Transactions</h1>
 
       <div className="w-full text-right">
-        <Button onClick={() => setShowTransactionForm(prev => !prev)}>
-          {showTransactionForm ? "Cancel" : "Add"} Transaction
+        <Button onClick={() => setIsTransactionFormVisible(prev => !prev)}>
+          {isTransactionFormVisible ? "Cancel" : "Add"} Transaction
         </Button>
       </div>
-      {showTransactionForm && (
+      {isTransactionFormVisible && (
         <TransactionForm
-          closeTransactionForm={() => setShowTransactionForm(false)}
+          closeTransactionForm={() => setIsTransactionFormVisible(false)}
         />
       )}
 
