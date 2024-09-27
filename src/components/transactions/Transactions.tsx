@@ -1,9 +1,9 @@
 import { useState } from "react";
 import TransactionForm from "./TransactionForm";
-import { Button } from "../ui/button";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import TransactionHeader from "./TransactionHeader";
+import ButtonSection from "./ButtonSection";
 
 const DATE_FORMAT_OPTIONS: Intl.DateTimeFormatOptions = {
   timeZone: "Asia/Karachi",
@@ -26,6 +26,10 @@ const Transactions: React.FC = () => {
   const [isTransactionFormVisible, setIsTransactionFormVisible] =
     useState(false);
 
+  const toggleTransactionForm = () => {
+    setIsTransactionFormVisible(prev => !prev);
+  };
+
   if (!transactions) {
     return <>Loading...</>;
   }
@@ -33,11 +37,11 @@ const Transactions: React.FC = () => {
   return (
     <div className="p-6 bg-white dark:bg-gray-900 min-h-screen">
       <TransactionHeader />
-      <div className="w-full text-right">
-        <Button onClick={() => setIsTransactionFormVisible(prev => !prev)}>
-          {isTransactionFormVisible ? "Cancel" : "Add"} Transaction
-        </Button>
-      </div>
+      <ButtonSection
+        isVisible={isTransactionFormVisible}
+        onToggle={toggleTransactionForm}
+      />
+
       {isTransactionFormVisible && (
         <TransactionForm
           closeTransactionForm={() => setIsTransactionFormVisible(false)}
