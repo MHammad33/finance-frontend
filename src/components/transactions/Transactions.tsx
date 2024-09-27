@@ -4,6 +4,19 @@ import { Button } from "../ui/button";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 
+const DATE_FORMAT_OPTIONS: Intl.DateTimeFormatOptions = {
+  timeZone: "Asia/Karachi",
+  weekday: "short",
+  year: "numeric",
+  month: "short",
+  day: "numeric"
+};
+
+const CURRENCY_FORMAT_OPTIONS: Intl.NumberFormatOptions = {
+  style: "currency",
+  currency: "PKR"
+};
+
 const Transactions: React.FC = () => {
   const transactions = useSelector(
     (state: RootState) => state.transactions.transactions
@@ -44,13 +57,9 @@ const Transactions: React.FC = () => {
           {transactions.map(transaction => (
             <tr key={transaction.id} className="border-b">
               <td className="py-2 px-4">
-                {new Intl.DateTimeFormat("en-GB", {
-                  timeZone: "Asia/Karachi",
-                  weekday: "short",
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric"
-                }).format(new Date(transaction.date))}
+                {new Intl.DateTimeFormat("en-GB", DATE_FORMAT_OPTIONS).format(
+                  new Date(transaction.date)
+                )}
               </td>
               <td className="py-2 px-4">{transaction.description}</td>
               <td className="py-2 px-4">{transaction.category}</td>
@@ -61,10 +70,10 @@ const Transactions: React.FC = () => {
                     : "text-red-500"
                 }`}
               >
-                {transaction.amount.toLocaleString("ur-PK", {
-                  style: "currency",
-                  currency: "PKR"
-                })}
+                {transaction.amount.toLocaleString(
+                  "ur-PK",
+                  CURRENCY_FORMAT_OPTIONS
+                )}
               </td>
               <td className="py-2 px-4 capitalize">{transaction.type}</td>
             </tr>
