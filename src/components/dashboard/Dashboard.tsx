@@ -1,9 +1,9 @@
 import { FC, useEffect, useMemo } from "react";
-import IncomeChart from "./charts/IncomeChart";
-import ExpensesChart from "./charts/ExpensesChart";
+import IncomeChart from "../charts/IncomeChart";
+import ExpensesChart from "../charts/ExpensesChart";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
-import BudgetSection from "./BudgetSection";
+import BudgetSection from "../BudgetSection";
 import { fetchAllTransactions } from "@/store/slices/transactionSlice";
 import { setLoading } from "@/store/slices/loadingSlice";
 
