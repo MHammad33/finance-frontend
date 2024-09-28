@@ -35,7 +35,7 @@ const Dashboard: FC = () => {
 
   useEffect(() => {
     loadTransactions();
-  }, [dispatch]);
+  }, [loadTransactions]);
 
   return (
     <div className="bg-gray-50 dark:bg-gray-900 min-h-screen p-6 md:p-8">
@@ -44,7 +44,11 @@ const Dashboard: FC = () => {
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <RecentTransactions transactions={transactions} />
+        {transactions.length === 0 ? (
+          <p>No recent transactions to display.</p>
+        ) : (
+          <RecentTransactions transactions={transactions} />
+        )}
 
         <section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 col-span-1 md:col-span-2 lg:col-span-2">
           <IncomeChart />
