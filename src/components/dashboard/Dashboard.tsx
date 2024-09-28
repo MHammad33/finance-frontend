@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo } from "react";
+import { FC, useCallback, useEffect, useMemo } from "react";
 import IncomeChart from "../charts/IncomeChart";
 import ExpensesChart from "../charts/ExpensesChart";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,16 +24,16 @@ const Dashboard: FC = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(() => {
-    const loadTransactions = async () => {
-      try {
-        dispatch(setLoading(true));
-        await dispatch(fetchAllTransactions());
-      } finally {
-        dispatch(setLoading(false));
-      }
-    };
+  const loadTransactions = useCallback(async () => {
+    try {
+      dispatch(setLoading(true));
+      await dispatch(fetchAllTransactions());
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }, [dispatch]);
 
+  useEffect(() => {
     loadTransactions();
   }, [dispatch]);
 
