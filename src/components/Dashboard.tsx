@@ -24,9 +24,16 @@ const Dashboard: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(setLoading(true));
-    dispatch(fetchAllTransactions());
-    dispatch(setLoading(false));
+    const loadTransactions = async () => {
+      try {
+        dispatch(setLoading(true));
+        await dispatch(fetchAllTransactions());
+      } finally {
+        dispatch(setLoading(false));
+      }
+    };
+
+    loadTransactions();
   }, [dispatch]);
 
   return (
