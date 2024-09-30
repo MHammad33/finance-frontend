@@ -3,6 +3,10 @@ import test, { expect } from "@playwright/test";
 test.describe("Dashboard", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
+
+    await page.getByTestId("sign-in-button").click();
+    await page.getByTestId("username-login").fill("hammad");
+    await page.getByTestId("password-login").fill("1122");
   });
 
   test("should display dashboard overview header", async ({ page }) => {
