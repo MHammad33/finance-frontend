@@ -63,6 +63,7 @@ const Login: FC = () => {
             type="email"
             id="email"
             name="email"
+            data-testId="email-login"
             value={formData.email}
             onChange={handleChange}
             required
@@ -80,6 +81,7 @@ const Login: FC = () => {
             type="password"
             id="password"
             name="password"
+            data-testId="password-login"
             value={formData.password}
             onChange={handleChange}
             required
@@ -88,6 +90,7 @@ const Login: FC = () => {
         </div>
         <button
           type="submit"
+          data-testId="login-button"
           className="w-full py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
           Login
