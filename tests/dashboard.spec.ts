@@ -5,9 +5,10 @@ test.describe("Dashboard", () => {
     await page.goto("/");
 
     await page.getByTestId("sign-in-button").click();
-    await page.getByTestId("email-login").fill("hammad");
+    await page.getByTestId("email-login").fill("ali@gmail.com");
     await page.getByTestId("password-login").fill("1122");
     await page.getByTestId("login-button").click();
+    await page.waitForURL("/dashboard");
   });
 
   test("should display dashboard overview header", async ({ page }) => {
