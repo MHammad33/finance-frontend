@@ -24,8 +24,8 @@ test.describe("Dashboard", () => {
   });
 
   test("should display income and expenses charts", async ({ page }) => {
-    const incomeChart = page.locator("text=Income Chart");
-    const expensesChart = page.locator("text=Expenses Chart");
+    const incomeChart = page.locator("text=Income Over Time");
+    const expensesChart = page.locator("text=Expenses Breakdown");
 
     await expect(incomeChart).toBeVisible();
     await expect(expensesChart).toBeVisible();
