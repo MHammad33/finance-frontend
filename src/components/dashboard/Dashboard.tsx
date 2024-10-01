@@ -28,6 +28,8 @@ const Dashboard: FC = () => {
     try {
       dispatch(setLoading(true));
       await dispatch(fetchAllTransactions());
+    } catch (error) {
+      console.error("Failed to fetch transactions", error);
     } finally {
       dispatch(setLoading(false));
     }
