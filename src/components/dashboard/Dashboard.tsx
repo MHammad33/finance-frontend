@@ -56,9 +56,9 @@ const Dashboard: FC = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {hasTransactions ? (
-            <p>No recent transactions to display.</p>
-          ) : (
             <RecentTransactions transactions={transactions} />
+          ) : (
+            <p>No recent transactions to display.</p>
           )}
 
           <section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 col-span-1 md:col-span-2 lg:col-span-2">
