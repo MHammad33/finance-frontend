@@ -35,6 +35,11 @@ const Dashboard: FC = () => {
     }
   }, [dispatch]);
 
+  const hasTransactions = useMemo(
+    () => transactions.length > 0,
+    [transactions]
+  );
+
   useEffect(() => {
     loadTransactions();
   }, [loadTransactions]);
@@ -46,7 +51,7 @@ const Dashboard: FC = () => {
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {transactions.length === 0 ? (
+        {hasTransactions ? (
           <p>No recent transactions to display.</p>
         ) : (
           <RecentTransactions transactions={transactions} />
