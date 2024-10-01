@@ -7,11 +7,13 @@ import BudgetSection from "../BudgetSection";
 import { fetchAllTransactions } from "@/store/slices/transactionSlice";
 import { setLoading } from "@/store/slices/loadingSlice";
 import RecentTransactions from "./RecentTransactions";
+import Spinner from "../Spinner";
 
 const Dashboard: FC = () => {
   const allTransactions = useSelector(
     (state: RootState) => state.transactions.transactions
   );
+  const isLoading = useSelector((state: RootState) => state.loading);
 
   const transactions = useMemo(
     () =>
@@ -49,24 +51,27 @@ const Dashboard: FC = () => {
       <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100">
         Dashboard Overview
       </h1>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {hasTransactions ? (
+            <p>No recent transactions to display.</p>
+          ) : (
+            <RecentTransactions transactions={transactions} />
+          )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {hasTransactions ? (
-          <p>No recent transactions to display.</p>
-        ) : (
-          <RecentTransactions transactions={transactions} />
-        )}
+          <section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 col-span-1 md:col-span-2 lg:col-span-2">
+            <IncomeChart />
+          </section>
 
-        <section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 col-span-1 md:col-span-2 lg:col-span-2">
-          <IncomeChart />
-        </section>
+          <section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 col-span-1 md:col-span-2 lg:col-span-3">
+            <ExpensesChart />
+          </section>
 
-        <section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 col-span-1 md:col-span-2 lg:col-span-3">
-          <ExpensesChart />
-        </section>
-
-        <BudgetSection />
-      </div>
+          <BudgetSection />
+        </div>
+      )}
     </div>
   );
 };
