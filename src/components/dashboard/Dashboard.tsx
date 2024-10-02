@@ -7,7 +7,6 @@ import BudgetSection from "../BudgetSection";
 import { fetchAllTransactions } from "@/store/slices/transactionSlice";
 import { setLoading } from "@/store/slices/loadingSlice";
 import RecentTransactions from "./RecentTransactions";
-import Spinner from "../Spinner";
 
 const Dashboard: FC = () => {
   const allTransactions = useSelector(
@@ -45,11 +44,6 @@ const Dashboard: FC = () => {
   useEffect(() => {
     loadTransactions();
   }, [loadTransactions]);
-
-  useEffect(() => {
-    console.log("Loading State:", isLoading);
-    console.log("Transactions State:", allTransactions);
-  }, [isLoading, allTransactions]);
 
   return (
     <div className="bg-gray-50 dark:bg-gray-900 min-h-screen p-6 md:p-8">
