@@ -35,7 +35,7 @@ const DesktopNav: FC = () => {
         <div className="flex space-x-2">
           <Link
             to="/login"
-            data-testId="sign-in-button"
+            data-testid="sign-in-button"
             className="text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 px-4 py-2 rounded"
           >
             Sign in
