@@ -46,32 +46,34 @@ const Dashboard: FC = () => {
     loadTransactions();
   }, [loadTransactions]);
 
+  useEffect(() => {
+    console.log("Loading State:", isLoading);
+    console.log("Transactions State:", allTransactions);
+  }, [isLoading, allTransactions]);
+
   return (
     <div className="bg-gray-50 dark:bg-gray-900 min-h-screen p-6 md:p-8">
       <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100">
         Dashboard Overview
       </h1>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {hasTransactions ? (
-            <RecentTransactions transactions={transactions} />
-          ) : (
-            <p>No recent transactions to display.</p>
-          )}
 
-          <section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 col-span-1 md:col-span-2 lg:col-span-2">
-            <IncomeChart />
-          </section>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {hasTransactions ? (
+          <RecentTransactions transactions={transactions} />
+        ) : (
+          <p>No recent transactions to display.</p>
+        )}
 
-          <section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 col-span-1 md:col-span-2 lg:col-span-3">
-            <ExpensesChart />
-          </section>
+        <section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 col-span-1 md:col-span-2 lg:col-span-2">
+          <IncomeChart />
+        </section>
 
-          <BudgetSection />
-        </div>
-      )}
+        <section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 col-span-1 md:col-span-2 lg:col-span-3">
+          <ExpensesChart />
+        </section>
+
+        <BudgetSection />
+      </div>
     </div>
   );
 };
